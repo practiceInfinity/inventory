@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<style>
+    .form-item {
+        margin-top: 1rem;
+        display: flex;
+    }
+    .form-item input {
+        width: 49%;
+    }
+    .form-item select {
+        width: 49%;
+    }
+    .form-item textarea {
+        width: 49%;
+    }
+    .form-item label {
+        width: 50%;
+    }
+    .form-item label {
+        margin-right:.5rem;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+    .form-item input {
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+        padding: .1rem .5rem;
+        border-radius: 3px;
+        outline: none;
+        border: 1px solid black;
+    }
+    .form-item select {
+        padding: .1rem 1rem;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+    .form-item option {
+        padding: .1rem 1rem;
+        width: 100%;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {% include 'sidebar.html' %}
+        <div class="col py-3 main-screen">
+
+            <div class="row d-flex flex-row justify-content-between">
+                <div class="col-lg-5">
+                <h1 style="display:block;width:fit-content;">Add a Customer</h1>    
+                {% if message %}
+                <p style="color:red; font-family:Segoe UI; font-weight:700;">{{message}}</p>
+                {% endif %}
+                
+                </div>
+            </div>
+            <form action="{% url 'add_customer' %}" method="post">
+                {% csrf_token %}
+                <div style="height:100vh; padding: 3rem 2rem; overflow:auto; box-sizing: border-box;" class="row d-flex flex-row justify-content-around">
+                    <div class="col-lg-4">
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="code">*Customer Code</label><input name="c-code" id="code" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="name">Customer Name</label><input name="c-name" id="name" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="type">Customer Type</label>
+                            <select  name="c-type" id="type">
+                                <option>Select Type</option>
+                                <option value="type1">type1</option>
+                                <option value="type2">type2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="salesperson">Sales Person</label>
+                            <select  name="sales_person" id="salesperson">
+                                <option>Select Type</option>
+                                <option value="salesperson1">salesperson1</option>
+                                <option value="salesperson2">salesperson2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="deliveraddress">Default Delivery Address</label>
+                            <select  name="c-d-address" id="deliveraddress">
+                                <option>Select Address</option>
+                                <option value="Address1">Address1</option>
+                                <option value="Address2">Address2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="warehouse">Default Warehouse</label>
+                            <select  name="c-warehouse" id="salesperson">
+                                <option value="">Select Warehouse</option>
+                                <option value="Warehouse1">Warehouse1</option>
+                                <option value="Warehouse2">Warehouse2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="notes">Notes</label><textarea name="notes" id="notes" class="" id="" cols="30" rows="4"></textarea>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="name">Print Quote</label><input type="checkbox" name="print-quote" id="">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="invoice">Print Invoice</label><input type="checkbox" name="print-invoice" id="invoice">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="packing-slip">Print Packin Slip</label><input type="checkbox" name="print-packing-slip" id="packing-slip">
+                        </div>
+                        
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="flexSwitchCheckDefault">Obsolete</label><div class="form-check form-switch">
+                                <input class="form-check-input" name="obsolete" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                              </div>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="stop-credit">Stop Credit</label><div class="form-check form-switch">
+                                <input  class="form-check-input" name="stop-credit" type="checkbox" role="switch" id="stop-credit" />
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="gst">GST / VAT Number</label><input name="gst" id="gst" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="default-currency">Default Currency</label><select name="default-currency" id="default-currency">
+                                <option value="">Select Currency</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="taxable">Taxable</label><div class="form-check form-switch">
+                                <input class="form-check-input" name="taxable" type="checkbox" role="switch" id="taxable" />
+                              </div>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="tax-rate">Tax  Rate</label><select name="tax-rate" id="tax-rate">
+                                <option value="">Select Tax Rate</option>
+                                <option value="Rate1">Rate 1</option>
+                                <option value="Rate2">Rate 2</option>
+                                <option value="Rate3">Rate 3</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="sales-account">Sales Account</label><select name="sales-account" id="sales-account">
+                                <option value="default">Default Sales Account</option>
+                                <option value="SalesAccount1">SalesAccount1</option>
+                                <option value="SalesAccount2">SalesAccount2</option>
+                                <option value="SalesAccount3">SalesAccount3</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="bank-account-name">Bank Account Name</label><input name="bank-account-name" id="bank-account-name" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="bank-account-number">Bank Account Number</label><input name="bank-account-number" id="bank-account-number" class="c-input" type="text">
+                        </div>                        
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="payment-terms">Payment Terms</label><select name="payment-terms" id="payment-terms">
+                                <option value="">Select Payment Terms</option>
+                                <option value="20MonthFollowing">20 Month following</option>
+                                <option value="23MonthFollowing">22 Month following</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="payment-terms">Sell Price Tier</label><select name="sell-price-tier" id="sell-price-tier">
+                                <option value="GBP">GBP</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="payment-terms">Discount (%)</label><input name="discount" id="paymen-terms" class="c-input" value="0.00" type="number">
+                        </div>
+                        <div class="form-item" style="display: flex; flex-direction:row; justify-content:space-around ; margin-top: 3rem;">
+                                <a href="/customers/" style="background-color:rgba(29,191,115); color:white;" class="btn btn-block mb-4">See Customers</a>
+                                <button type="submit" style="background-color:rgba(29,191,115); color:white;" class="btn btn-block mb-4">Save Customer
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

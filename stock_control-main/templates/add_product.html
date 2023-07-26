@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<style>
+    .form-item {
+        margin-top: 1rem;
+        display: flex;
+    }
+    .form-item input {
+        width: 49%;
+    }
+    .form-item select {
+        width: 49%;
+    }
+    .form-item textarea {
+        width: 49%;
+    }
+    .form-item label {
+        width: 50%;
+    }
+    .form-item label {
+        margin-right:.5rem;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+    .form-item input {
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+        padding: .1rem .5rem;
+        border-radius: 3px;
+        outline: none;
+        border: 1px solid black;
+    }
+    .form-item select {
+        padding: .1rem 1rem;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+    .form-item option {
+        padding: .1rem 1rem;
+        width: 100%;
+        font-size: 15px;
+        font-family: Segoe UI;
+        font-weight: 500;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {% include 'sidebar.html' %}
+        <div class="col py-3 main-screen">
+
+            <div class="row d-flex flex-row justify-content-between">
+                <div class="col-lg-5">
+                <h1 style="display:block;width:fit-content;">Add a Product</h1>  
+                    {% if message %}
+                        <p style="color:red;font-size:20px;font-weight:700;font-family:Segoe UI;">{{message}}</p>
+                    {% endif %}
+            </div>
+            </div>
+            <form action="{% url 'add_product' %}" method="post">
+                {% csrf_token %}
+                <div style="height:100vh; padding: 3rem 2rem; overflow:auto; box-sizing: border-box;" class="row d-flex flex-row justify-content-around">
+                    <div class="col-lg-4">
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="code">*Product Code</label><input name="product_code" id="code" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="name">Product Name</label><input name="product_name" id="name" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="type">Product Category</label>
+                            <select  name="product_category" id="type">
+                                <option>Please Select</option>
+                                <option value="category1">category1</option>
+                                <option value="category2">category2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="salesperson">Dealer</label>
+                            <select  name="dealer" id="salesperson">
+                                <option>Select Dealer</option>
+                                <option value="dealer1">dealer1</option>
+                                <option value="dealer2">dealer2</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="unit">Unit of Measure</label>
+                            <select  name="unit_of_measure" id="unit">
+                                <option>Select Unit</option>
+                                <option value="Unit1">Unit1</option>
+                                <option value="Unit2">Unit2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="notes">Product Description</label><textarea name="product_description" id="notes" class="" id="" cols="30" rows="4"></textarea>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="name">Availability</label><input type="checkbox" name="availability" id="">
+                        </div>
+
+                        
+                        
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="flexSwitchCheckDefault">Delivery</label><div class="form-check form-switch">
+                                <input class="form-check-input" name="delivery" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                              </div>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="stop-credit">Delivery Charges</label><div class="form-check form-switch">
+                                <input  class="form-check-input" name="delivery_charges" type="checkbox" role="switch" id="stop-credit" />
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-item">
+                            <h3>Dimensions</h3>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="gst">Height (In metre)</label><input name="height" id="gst" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="gst">Width (In metre)</label><input name="width" id="gst" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="gst">Depth (In metre)</label><input name="depth" id="gst" class="c-input" type="text">
+                        </div>
+                        
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="taxable">Is Premium</label><div class="form-check form-switch">
+                                <input class="form-check-input" name="is_premium" type="checkbox" role="switch" id="taxable" />
+                              </div>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="taxable">Different Sizes</label><div class="form-check form-switch">
+                                <input class="form-check-input" name="different_sizes" type="checkbox" role="switch" id="taxable" />
+                              </div>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="tax-rate">Pack Size Category</label><select name="pack_size_category" id="tax-rate">
+                                <option value="">Select Please </option>
+                                <option value="Rate1">large</option>
+                                <option value="Rate2">medium</option>
+                                <option value="Rate3">small</option>
+                            </select>
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="bank-account-name">Previous Price</label><input name="previous_price" id="bank-account-name" class="c-input" type="text">
+                        </div>
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="bank-account-name">Current Price</label><input name="current_price" id="bank-account-name" class="c-input" type="text">
+                        </div>
+                        
+                        
+                        <div class="form-item d-flex">
+                            <label class="c-label" for="payment-terms">Discount (%)</label><input name="discount" id="paymen-terms" class="c-input" value="0.00" type="number">
+                        </div>
+                        <div class="form-item" style="display: flex; flex-direction:row; justify-content:space-around ; margin-top: 3rem;">
+                                <a href="/products/" style="background-color:rgba(29,191,115); color:white;" class="btn btn-block mb-4">See Products</a>
+                                <button type="submit" style="background-color:rgba(29,191,115); color:white;" class="btn btn-block mb-4">Save Product
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

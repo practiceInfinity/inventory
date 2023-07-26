@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<style>
+    .home-screen {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .home-screen a.card-a {
+        width: fit-content;
+        text-decoration: none;
+
+    }
+    .home-screen a .card {
+        background: none ;
+        background-color: rgba(29,191,115, .7);
+        padding: 5rem 4rem;
+        color: white;
+        box-shadow: 0px 0px 5px gray;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {% include 'navbar.html' %}
+        {% include 'sidebar.html' %}
+        <div class="col py-3">
+            <h1>Welcome {{request.user.username}} to your Dashboard</h1>
+            
+            <div style="height:100vh;" class="row d-flex flex-row  home-screen">
+                <a class="card-a" href="/products/" >
+                    <div class="card">
+                        <h3>Your Products</h3>
+                    </div>
+                </a>
+                <a class="card-a" href="/customers/" >
+                    <div class="card">
+                        <h3>Your Customers</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

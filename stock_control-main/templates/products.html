@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {% include 'sidebar.html' %}
+        <div class="col py-3 main-screen">
+            <div class="row">
+                <h1>Your Products</h1>
+            </div>
+
+            <div style="padding:4rem 3rem; height:100vh; overflow:auto;" class="row">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Product Category</th>
+                        <th>Availibility</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">{{product.product_code}}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1" style="font-weight:900;">fjldkajklj</p>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">{{product.product_category}}</p>
+                        </td>
+                        <td>{% if product.availability %} Yes {% else %} No {% endif %}</td>
+                        <td>
+                              <p class="fw-normal mb-1">{{product.current_price}}</p>
+                        </td>
+                      </tr>    
+                    {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+

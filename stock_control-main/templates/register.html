@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+<style>
+
+</style>
+
+
+
+<div class="container">
+    <div style="min-height:100vh; " class="row d-flex justify-content-around align-content-center">
+        <div class="col-lg-5" style="border:1.2px solid gray; padding:5rem 3rem ; border-radius:10px;">
+            <h1 style="color:rgba(29,191,115); margin-bottom:3rem;">Sign Up</h1>
+            {% if messages %}
+                <p style="color:red;">
+                    {{messages}}
+                </p>
+            {% endif %}
+            <form action="/register/" method="post">
+                {% csrf_token %}
+                
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="text" required value="{{username}}" name="username" id="form2Example1" class="form-control" />
+                  <label class="form-label" for="form2Example1">Full Name</label>
+                </div>
+              
+                <!-- Password input -->
+                <div class="form-outline d-flex flex-wra flex-row justify-content-between mb-4">
+                    <div>
+                      <input type="email" required value="{{email}}" name="email" id="form2Example2" class="form-control" />
+                    <label class="form-label" for="form2Example2">Email Address</label>
+                    </div>
+                    <div>
+                        <input type="password" required name="password" id="form2Example2" class="form-control" />
+                        <label class="form-label" for="form2Example2">Password</label>
+                    </div>
+                  
+                </div>
+              
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                  <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                      <label class="form-check-label" for="form2Example31"> Remember me </label>
+                    </div>
+                  </div>
+              
+                  
+                </div>
+              
+                <!-- Submit button -->
+                <button type="submit"  style="background-color:rgba(29,191,115); color:white;" class="btn btn-block mb-4">Register Now</button>
+              
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>Already have an account ? <a href="{% url 'login' %}">Login</a></p>
+                  <p>or sign up with:</p>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
